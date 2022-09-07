@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  usb-drive:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    privileged: true
+    labels:
+      io.balena.features.bind-mount: "1"
+    restart: always
+
+  test-mount:
+    image: alpine
+    command: tail -f /dev/null
+    privileged: true
+    labels:
+      io.balena.features.bind-mount: "1"
+    restart: always
